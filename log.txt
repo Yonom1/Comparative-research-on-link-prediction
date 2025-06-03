@@ -1,0 +1,318 @@
+(network0) PS E:\南京大学\课程\大二下学期\通识课\网络新科学\Project> python .\main.py
+D:\anaconda3\envs\network0\lib\site-packages\requests\__init__.py:86: RequestsDependencyWarning: Unable to find acceptable character detection dependency (chardet or charset_normalizer).
+  warnings.warn(
+D:\anaconda3\envs\network0\lib\site-packages\torch_geometric\typing.py:86: UserWarning: An issue occurred while importing 'torch-scatter'. Disabling its usage. Stacktrace: [WinError 127] 找不到指定的程序。
+  warnings.warn(f"An issue occurred while importing 'torch-scatter'. "
+D:\anaconda3\envs\network0\lib\site-packages\torch_geometric\typing.py:97: UserWarning: An issue occurred while importing 'torch-cluster'. Disabling its usage. Stacktrace: [WinError 127] 找不到指定的程序。
+  warnings.warn(f"An issue occurred while importing 'torch-cluster'. "
+D:\anaconda3\envs\network0\lib\site-packages\torch_geometric\typing.py:113: UserWarning: An issue occurred while importing 'torch-spline-conv'. Disabling its usage. Stacktrace: [WinError 127] 找不到指定的程序。
+  warnings.warn(
+D:\anaconda3\envs\network0\lib\site-packages\torch_geometric\typing.py:124: UserWarning: An issue occurred while importing 'torch-sparse'. Disabling its usage. Stacktrace: [WinError 127] 找不到指定的程序。
+  warnings.warn(f"An issue occurred while importing 'torch-sparse'. "
+
+===== 处理数据集: arxiv =====
+[主流程] 开始加载或缓存数据...
+[缓存] 加载 arxiv 数据集
+[主流程] 数据加载完成。
+
+[主流程] 评估所有传统方法...
+[信息] 原始测试边数量: 19811
+[信息] 有效测试边数量: 19811
+[信息] 节点不在图中的边数量: 0
+[信息] 图中节点数量: 18772
+[信息] 图中边数量: 198110
+[传统方法] 正在评估: common_neighbors
+[传统方法] common_neighbors 评估完成: AUC=0.9929, AP=0.9952
+[传统方法] 正在评估: jaccard_coefficient
+[传统方法] jaccard_coefficient 评估完成: AUC=0.9934, AP=0.9957
+[传统方法] 正在评估: adamic_adar
+[传统方法] adamic_adar 评估完成: AUC=0.9936, AP=0.9959
+[传统方法] 正在评估: resource_allocation
+[传统方法] resource_allocation 评估完成: AUC=0.9940, AP=0.9961
+[传统方法] 正在评估: preferential_attachment
+[传统方法] preferential_attachment 评估完成: AUC=0.8714, AP=0.9282
+[主流程] 传统方法评估完成。
+
+[主流程] 训练和测试所有GNN模型...
+
+训练 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 只训练GCN，不做测试...
+提前停止训练! Epoch: 69
+[train_model] 训练完成! 耗时: 20.21秒
+[train_model] 模型已保存到: results/gcn_best_model.pt
+
+测试 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 已加载模型: results/gcn_best_model.pt
+[train_model] 开始在测试集上评估GCN...
+[train_model] 测试AUC: 0.7237, AP: 0.7536
+
+训练 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 只训练GRAPHSAGE，不做测试...
+提前停止训练! Epoch: 96
+[train_model] 训练完成! 耗时: 27.31秒
+[train_model] 模型已保存到: results/graphsage_best_model.pt
+
+测试 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 已加载模型: results/graphsage_best_model.pt
+[train_model] 开始在测试集上评估GRAPHSAGE...
+[train_model] 测试AUC: 0.5922, AP: 0.5378
+
+训练 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 只训练GAT，不做测试...
+提前停止训练! Epoch: 11
+[train_model] 训练完成! 耗时: 3.98秒
+[train_model] 模型已保存到: results/gat_best_model.pt
+
+测试 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 16
+[train_model] 使用默认模型架构（适用于高维特征）...
+[train_model] 最终模型配置: in_channels=16, hidden_channels=64
+[train_model] 已加载模型: results/gat_best_model.pt
+[train_model] 开始在测试集上评估GAT...
+[train_model] 测试AUC: 0.4895, AP: 0.4626
+[主流程] GNN模型训练与测试完成。
+
+[主流程] 输出所有结果...
+结果表格已保存: results/arxiv_results.csv
+结果图片已保存: results/arxiv_results.png
+
+==== arxiv 结果 ====
+                              AUC        AP
+common_neighbors         0.992926  0.995241
+jaccard_coefficient      0.993405  0.995717
+adamic_adar              0.993616  0.995878
+resource_allocation      0.993995  0.996115
+preferential_attachment  0.871365  0.928192
+gcn                      0.723657  0.753634
+graphsage                0.592240  0.537804
+gat                      0.489549  0.462572
+[主流程] arxiv 数据集流程结束。
+
+
+===== 处理数据集: dblp =====
+[主流程] 开始加载或缓存数据...
+[缓存] 加载 dblp 数据集
+[主流程] 数据加载完成。
+
+[主流程] 评估所有传统方法...
+[信息] 原始测试边数量: 104987
+[信息] 有效测试边数量: 104987
+[信息] 节点不在图中的边数量: 0
+[信息] 图中节点数量: 317080
+[信息] 图中边数量: 1049866
+[传统方法] 正在评估: common_neighbors
+[传统方法] common_neighbors 评估完成: AUC=0.9645, AP=0.9938
+[传统方法] 正在评估: jaccard_coefficient
+[传统方法] jaccard_coefficient 评估完成: AUC=0.9645, AP=0.9938
+[传统方法] 正在评估: adamic_adar
+[传统方法] adamic_adar 评估完成: AUC=0.9645, AP=0.9938
+[传统方法] 正在评估: resource_allocation
+[传统方法] resource_allocation 评估完成: AUC=0.9645, AP=0.9938
+[传统方法] 正在评估: preferential_attachment
+[传统方法] preferential_attachment 评估完成: AUC=0.8394, AP=0.9804
+[主流程] 传统方法评估完成。
+
+[主流程] 训练和测试所有GNN模型...
+
+训练 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GCN，不做测试...
+提前停止训练! Epoch: 46
+[train_model] 训练完成! 耗时: 61.21秒
+[train_model] 模型已保存到: results/gcn_best_model.pt
+
+测试 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/gcn_best_model.pt
+[train_model] 开始在测试集上评估GCN...
+[train_model] 测试AUC: 0.7002, AP: 0.7479
+
+训练 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GRAPHSAGE，不做测试...
+[train_model] 训练完成! 耗时: 126.90秒
+[train_model] 模型已保存到: results/graphsage_best_model.pt
+
+测试 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/graphsage_best_model.pt
+[train_model] 开始在测试集上评估GRAPHSAGE...
+[train_model] 测试AUC: 0.6962, AP: 0.7474
+
+训练 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GAT，不做测试...
+提前停止训练! Epoch: 41
+[train_model] 训练完成! 耗时: 68.59秒
+[train_model] 模型已保存到: results/gat_best_model.pt
+
+测试 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/gat_best_model.pt
+[train_model] 开始在测试集上评估GAT...
+[train_model] 测试AUC: 0.6715, AP: 0.6986
+[主流程] GNN模型训练与测试完成。
+
+[主流程] 输出所有结果...
+结果表格已保存: results/dblp_results.csv
+结果图片已保存: results/dblp_results.png
+
+==== dblp 结果 ====
+                              AUC        AP
+common_neighbors         0.964497  0.993826
+jaccard_coefficient      0.964483  0.993828
+adamic_adar              0.964518  0.993832
+resource_allocation      0.964515  0.993831
+preferential_attachment  0.839437  0.980442
+gcn                      0.700245  0.747895
+graphsage                0.696224  0.747365
+gat                      0.671545  0.698626
+[主流程] dblp 数据集流程结束。
+
+
+===== 处理数据集: hep-ph =====
+[主流程] 开始加载或缓存数据...
+[原始] 处理 hep-ph 数据集
+节点ID重映射完成:
+- 原始节点ID范围: [1001, 9912553]
+- 映射后节点ID范围: [0, 34545]
+[数据处理] 使用spectral特征...
+Not enough memory to perform factorization.
+警告：谱嵌入计算失败，使用节点度作为特征
+[数据处理] 特征维度: torch.Size([34546, 1])
+[主流程] 数据加载完成。
+
+[主流程] 评估所有传统方法...
+[信息] 原始测试边数量: 42093
+[信息] 有效测试边数量: 42093
+[信息] 节点不在图中的边数量: 0
+[信息] 图中节点数量: 34546
+[信息] 图中边数量: 420921
+[传统方法] 正在评估: common_neighbors
+[传统方法] common_neighbors 评估完成: AUC=0.9678, AP=0.9878
+[传统方法] 正在评估: jaccard_coefficient
+[传统方法] jaccard_coefficient 评估完成: AUC=0.9671, AP=0.9877
+[传统方法] 正在评估: adamic_adar
+[传统方法] adamic_adar 评估完成: AUC=0.9683, AP=0.9881
+[传统方法] 正在评估: resource_allocation
+[传统方法] resource_allocation 评估完成: AUC=0.9686, AP=0.9882
+[传统方法] 正在评估: preferential_attachment
+[传统方法] preferential_attachment 评估完成: AUC=0.8410, AP=0.9536
+[主流程] 传统方法评估完成。
+
+[主流程] 训练和测试所有GNN模型...
+
+训练 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GCN，不做测试...
+提前停止训练! Epoch: 57
+[train_model] 训练完成! 耗时: 33.03秒
+[train_model] 模型已保存到: results/gcn_best_model.pt
+
+测试 GCN ...
+[train_model] 初始化GCN模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/gcn_best_model.pt
+[train_model] 开始在测试集上评估GCN...
+[train_model] 测试AUC: 0.7483, AP: 0.7594
+
+训练 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GRAPHSAGE，不做测试...
+[train_model] 训练完成! 耗时: 43.19秒
+[train_model] 模型已保存到: results/graphsage_best_model.pt
+
+测试 GRAPHSAGE ...
+[train_model] 初始化GRAPHSAGE模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/graphsage_best_model.pt
+[train_model] 开始在测试集上评估GRAPHSAGE...
+[train_model] 测试AUC: 0.7677, AP: 0.7759
+
+训练 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 只训练GAT，不做测试...
+提前停止训练! Epoch: 43
+[train_model] 训练完成! 耗时: 27.60秒
+[train_model] 模型已保存到: results/gat_best_model.pt
+
+测试 GAT ...
+[train_model] 初始化GAT模型...
+[train_model] 检测到输入特征维度: 1
+[train_model] 检测到1维特征，调整模型架构...
+[train_model] 最终模型配置: in_channels=1, hidden_channels=16
+[train_model] 已加载模型: results/gat_best_model.pt
+[train_model] 开始在测试集上评估GAT...
+[train_model] 测试AUC: 0.6668, AP: 0.6538
+[主流程] GNN模型训练与测试完成。
+
+[主流程] 输出所有结果...
+结果表格已保存: results/hep-ph_results.csv
+结果图片已保存: results/hep-ph_results.png
+
+==== hep-ph 结果 ====
+                              AUC        AP
+common_neighbors         0.967850  0.987801
+jaccard_coefficient      0.967143  0.987721
+adamic_adar              0.968348  0.988110
+resource_allocation      0.968566  0.988202
+preferential_attachment  0.840973  0.953636
+gcn                      0.748283  0.759426
+graphsage                0.767715  0.775935
+gat                      0.666812  0.653841
+[主流程] hep-ph 数据集流程结束。
+
+
+全部实验流程已顺利完成！
