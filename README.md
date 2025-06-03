@@ -102,3 +102,10 @@ python plot_results.py
 2. Resource Allocation和Adamic Adar算法展现出最佳性能
 3. 在GNN方法中，GCN和GraphSAGE的表现相对较好
 4. 数据集特性对算法性能有显著影响
+
+## 参考文献
+
+1. Kipf, T. N., & Welling, M. (2016). Semi-supervised classification with graph convolutional networks. arXiv preprint arXiv:1609.02907.
+2. Hamilton, W., Ying, Z., & Leskovec, J. (2017). Inductive representation learning on large graphs. In Advances in neural information processing systems.
+3. Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017). Graph attention networks. arXiv preprint arXiv:1710.10903.
+
