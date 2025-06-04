@@ -69,14 +69,9 @@ python download_datasets.py
 python extract_datasets.py
 ```
 
-2. 一键运行所有算法的训练和测试：
+2. 一键运行所有算法的训练和测试以及可视化流程：
 ```bash
 python main.py
-```
-
-3. 可视化结果对比：
-```bash
-python plot_results.py
 ```
 
 ## 实验结果
