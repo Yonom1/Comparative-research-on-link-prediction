@@ -69,18 +69,12 @@ python download_datasets.py
 python extract_datasets.py
 ```
 
-2. 运行传统算法测试：
+2. 一键运行所有算法的训练和测试：
 ```bash
-python test_traditional.py
+python main.py
 ```
 
-3. 训练和测试GNN模型：
-```bash
-python train_gnn.py
-python test_gnn.py
-```
-
-4. 可视化结果对比：
+3. 可视化结果对比：
 ```bash
 python plot_results.py
 ```
